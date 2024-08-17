@@ -17,8 +17,19 @@ public class SceneLoader
         scope.launch(loadAsyncScene(sceneNumber, completion));
     }
 
-    public void unloadScene(int sceneNumber) {
-        SceneManager.UnloadSceneAsync(sceneNumber);
+    public void unloadScene(int sceneNumber, Action completion, CoroutineScope scope) {
+        scope.launch(unloadAsyncScene(sceneNumber, completion));
+    }
+
+    private IEnumerator unloadAsyncScene(int sceneNumber, Action completion) {
+        try {
+            AsyncOperation unloadOperation = SceneManager.UnloadSceneAsync(sceneNumber);
+            while (!unloadOperation.isDone) {
+                yield return null;
+            }
+        } finally {
+            completion();
+        }        
     }
 
     private IEnumerator loadAsyncScene(int sceneNumber, Action completion)

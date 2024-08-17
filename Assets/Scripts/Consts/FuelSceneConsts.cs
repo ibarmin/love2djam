@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class FuelSceneConsts
 {
-    public static int TIME_FOR_FUEL_LEVEL = 3000;
+    public static float TIME_FOR_FUEL_LEVEL = 3000.0f;
 }

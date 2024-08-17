@@ -19,6 +19,11 @@ public class SocobanScene : MonoBehaviour
         
         levelBuilder.buildLevel();
         player = FindObjectOfType<SocobanPlayer>();
+
+        SocobanBox[] boxes = FindObjectsOfType<SocobanBox>();
+        foreach (var box in boxes) {
+            box.onBoxArrived += onBoxArrived;
+        }
     }
 
     public void Update() {
@@ -42,12 +47,11 @@ public class SocobanScene : MonoBehaviour
         }
     }
 
-    public void onExitDoor() {
+    public void onExitDoor() {       
         fuelScene.destroyLastCollidedDoor();
     }
 
-    private bool IsLevelComplete()
-    {
+    private bool IsLevelComplete() {
         SocobanBox[] boxes = FindObjectsOfType<SocobanBox>();
         foreach (var box in boxes) {
             if (!box.arrived) {
@@ -55,5 +59,9 @@ public class SocobanScene : MonoBehaviour
             }
         }
         return true;
+    }
+
+    private void onBoxArrived(int collectedValue) {
+        fuelScene.addCollectedFuel(collectedValue);
     }
 }

@@ -23,6 +23,9 @@ public class FuelSceneCharacterController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (Input.GetKey(KeyCode.UpArrow)) {
+            characterBody.AddForce(Vector2.up * 50.0f);
+        }
         if (Input.GetKey(KeyCode.LeftArrow)) {
             characterBody.MovePosition(characterBody.position + Vector2.left * Time.fixedDeltaTime * characterSpeed);
         }

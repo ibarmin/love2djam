@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class SocobanBox : MonoBehaviour
 {
+    public delegate void ArrivedHandler(int fuelValue);
+    public event ArrivedHandler onBoxArrived;
+
     public bool arrived;
+    public int fuelValue;
 
     public bool Move(Vector2 direction)
     {
@@ -16,9 +20,9 @@ public class SocobanBox : MonoBehaviour
         }
     }
     
-    private void Update() {
-        ArrivedOnCross();
-    }
+    // private void Update() {
+    //     ArrivedOnCross();
+    // }
 
     public bool IsBoxBlocked(Vector3 position, Vector2 direction) {
         Vector2 newPos = new Vector2(position.x, position.y) + direction;
@@ -43,9 +47,11 @@ public class SocobanBox : MonoBehaviour
         GameObject[] slots = GameObject.FindGameObjectsWithTag("Slot");
         SpriteRenderer boxColor = GetComponent<SpriteRenderer>();
         foreach(var slot in slots) {
-            if(transform.position.x == slot.transform.position.x && transform.position.y == slot.transform.position.y) {
+            if (transform.position.x == slot.transform.position.x && transform.position.y == slot.transform.position.y) {
                 boxColor.color = Color.green;
+                boxColor.sortingOrder = 100;
                 arrived = true;
+                onBoxArrived?.Invoke(fuelValue);
                 return;
             }
         }

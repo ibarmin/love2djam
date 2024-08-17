@@ -349,7 +349,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1111067496}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1111067498
 Camera:
   m_ObjectHideFlags: 0
@@ -693,6 +693,8 @@ MonoBehaviour:
     prefab: {fileID: 1319528503162578216, guid: daa563be7d84248c9b22105da0c3c014, type: 3}
   - elementCharacter: '#'
     prefab: {fileID: 5513074450735982864, guid: 2c8527469ad5c403b818f3a9295ce624, type: 3}
+  - elementCharacter: '!'
+    prefab: {fileID: 6835060323818625739, guid: 660b0ca0fb09e462eaa4afd094374dca, type: 3}
 --- !u!4 &1687254197
 Transform:
   m_ObjectHideFlags: 0
