@@ -14,4 +14,8 @@ public class MainSceneUI : MonoBehaviour
     public void onStartGame() {
         sceneLoader.loadScene(SceneNumbers.STORY_SCENE_ID);
     }
+
+    public void onStart2048() {
+        sceneLoader.loadScene(SceneNumbers.SCENE_2048_ID);
+    }
 }
