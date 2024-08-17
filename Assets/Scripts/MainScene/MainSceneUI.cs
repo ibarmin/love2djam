@@ -12,17 +12,6 @@ public class MainSceneUI : MonoBehaviour
     }
 
     public void onStartGame() {
-        
-    }
-
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
+        sceneLoader.loadScene(SceneNumbers.STORY_SCENE_ID);
     }
 }

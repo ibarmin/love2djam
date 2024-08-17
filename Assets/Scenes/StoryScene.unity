@@ -392,6 +392,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2022848218}
     m_Modifications:
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2022848220}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: onSkipStory
+      objectReference: {fileID: 0}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StorySceneUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 972641139096872400, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 3372685594874987675, guid: 39ba3005ee3eb4cb683827ce360a64ab, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -500,6 +528,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2022848218}
   - component: {fileID: 2022848219}
+  - component: {fileID: 2022848220}
   m_Layer: 5
   m_Name: StorySceneUI
   m_TagString: Untagged
@@ -535,6 +564,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022848217}
   m_CullTransparentMesh: 1
+--- !u!114 &2022848220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022848217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e898d54d6cbce419aa3371785eae6723, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
