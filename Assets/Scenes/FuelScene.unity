@@ -251,6 +251,7 @@ MonoBehaviour:
   mainCamera: {fileID: 543864438}
   characterController: {fileID: 770186521}
   lastOpenedDoorType: 0
+  sceneVisual: {fileID: 1459092727}
 --- !u!4 &684573832
 Transform:
   m_ObjectHideFlags: 0

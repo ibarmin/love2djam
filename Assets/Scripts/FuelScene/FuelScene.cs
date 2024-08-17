@@ -9,6 +9,8 @@ public class FuelScene : MonoBehaviour, CoroutineScope
     public FuelStoreDoorType lastOpenedDoorType;
     public GameObject sceneVisual;
 
+
+    private int timeLeft = FuelSceneConsts.TIME_FOR_FUEL_LEVEL;
     private FuelStoreDoor lastOpenedDoor;
     private SceneLoader sceneLoader = new SceneLoader();
 
