@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/GameProgressScene.unity
     guid: 18b7e6fb948b446eab09bd21b5e3ca91
   - enabled: 1
+    path: Assets/Scenes/FuelScene.unity
+    guid: 961ff5bae673e4903b10f66664a9e2d9
+  - enabled: 1
+    path: Assets/Scenes/FuelSocobanScene.unity
+    guid: d23aca9c6995148069cb0564111663f6
+  - enabled: 1
     path: Assets/Scenes/Scene2048.unity
     guid: 98be90fcfc343a441b8a244a24310bde
   m_configObjects: {}
