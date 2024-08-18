@@ -10,17 +10,19 @@ namespace Assets.Scripts
     {
         public bool WillMoveAndDuplicate { get; set; }
         public GameObject GOToAnimatePosition { get; set; }
+        public GameObject ToRemove { get; set; }
 
         public int NewRow { get; set; }
         public int NewColumn { get; set; }
 
 
-        public ItemMovementDetails(int newRow, int newColumn, GameObject goToAnimatePosition, bool willMoveAndDuplicate)
+        public ItemMovementDetails(int newRow, int newColumn, GameObject goToAnimatePosition, GameObject toRemove)
         {
             NewRow = newRow;
             NewColumn = newColumn;
             GOToAnimatePosition = goToAnimatePosition;
-            WillMoveAndDuplicate = willMoveAndDuplicate;
+            WillMoveAndDuplicate = toRemove != null;
+            ToRemove = toRemove;
         }
 
     }

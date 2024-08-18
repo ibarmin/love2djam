@@ -176,7 +176,7 @@ public class ItemArray
             return imd2;
         }
         //they are not the same, so we'll just animate the current item to its new position
-        return new ItemMovementDetails(newRow, newColumn, matrix[newRow, newColumn].GO, false);
+        return new ItemMovementDetails(newRow, newColumn, matrix[newRow, newColumn].GO, null);
     }
 
     private ItemMovementDetails AreTheseTwoItemsSame(int originalRow, int originalColumn, int toCheckRow, int toCheckColumn)
@@ -195,10 +195,10 @@ public class ItemArray
             matrix[toCheckRow, toCheckColumn].Value *= 2;
             matrix[toCheckRow, toCheckColumn].WasJustDuplicated = true;
             //make a copy of the gameobject to be moved and then disappear
-            var GOToAnimateScaleCopy = matrix[originalRow, originalColumn].GO;
+            var toRemove = matrix[originalRow, originalColumn].GO;
             //remove this item from the array
             matrix[originalRow, originalColumn] = null;
-            return new ItemMovementDetails(toCheckRow, toCheckColumn, matrix[toCheckRow, toCheckColumn].GO, true);
+            return new ItemMovementDetails(toCheckRow, toCheckColumn, matrix[toCheckRow, toCheckColumn].GO, toRemove);
         } else {
             return null;
         }
@@ -214,7 +214,7 @@ public class ItemArray
             }
     }
 
-    private System.Random random = new System.Random();
+    private System.Random random = new();
 }
 
 public enum HorizontalMovement { Left, Right };

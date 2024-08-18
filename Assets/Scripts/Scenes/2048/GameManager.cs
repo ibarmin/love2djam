@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     ItemArray matrix;
     public GameObject GO2, GO4, GO8, GO16, GO32, GO64, GO128, GO256, GO512, GO1024, blankGO;
     public Text ScoreText, DebugText;
-    private float distance = 0.109f;
+    private readonly float distance = 0.109f;
 
     public IInputDetector inputDetector;
 
@@ -28,13 +28,9 @@ public class GameManager : MonoBehaviour
     void InitArrayWithPremadeData()
     {
         string[,] sampleArray = Utilities.GetMatrixFromResourcesData();
-        for (int row = 0; row < Globals.Rows; row++)
-        {
-            for (int column = 0; column < Globals.Columns; column++)
-            {
-                int value;
-                if (int.TryParse(sampleArray[Globals.Rows - 1 - row, column], out value))
-                {
+        for (int row = 0; row < Globals.Rows; row++) {
+            for (int column = 0; column < Globals.Columns; column++) {
+                if (int.TryParse(sampleArray[Globals.Rows - 1 - row, column], out int value)) {
                     CreateNewItem(value, row, column);
                 }
             }
@@ -89,20 +85,19 @@ public class GameManager : MonoBehaviour
     {
         int randomRow, randomColumn;
 
-        if (row == null && column == null)
-        {
+        if (row == null && column == null) {
             matrix.GetRandomRowColumn(out randomRow, out randomColumn);
-        }
-        else
-        {
+        } else {
             randomRow = row.Value;
             randomColumn = column.Value;
         }
 
-        var newItem = new Item();
-        newItem.Row = randomRow;
-        newItem.Column = randomColumn;
-        newItem.Value = value;
+        var newItem = new Item
+        {
+            Row = randomRow,
+            Column = randomColumn,
+            Value = value
+        };
 
         GameObject newGo = GetGOBasedOnValue(value);
         newGo.transform.localScale = new Vector3(0.01f, 0.01f, 0.01f);
@@ -124,7 +119,7 @@ public class GameManager : MonoBehaviour
         {
             for (int column = 0; column < Globals.Columns; column++)
             {
-                Instantiate(blankGO, this.transform.position +
+                Instantiate(blankGO, transform.position +
                 new Vector3(column + column * distance, row + row * distance, ZIndex), Quaternion.identity);
             }
         }
@@ -140,7 +135,7 @@ public class GameManager : MonoBehaviour
 
             if (value.HasValue)
             {
-                List<ItemMovementDetails> movementDetails = new List<ItemMovementDetails>();
+                List<ItemMovementDetails> movementDetails = new();
                 //Debug.Log(value);
                 if (value == InputDirection.Left)
                     movementDetails = matrix.MoveHorizontal(HorizontalMovement.Left);
@@ -164,14 +159,14 @@ public class GameManager : MonoBehaviour
 
     IEnumerator AnimateItems(IEnumerable<ItemMovementDetails> movementDetails)
     {
-        List<GameObject> objectsToDestroy = new List<GameObject>();
+        List<GameObject> objectsToDestroy = new();
         foreach (var item in movementDetails) {
             //calculate the new position in the world space
             var newGoPosition = new Vector3(item.NewColumn + item.NewColumn * distance,
                 item.NewRow + item.NewRow * distance, ZIndex);
 
             //move it there
-            item.GOToAnimatePosition.transform.position = newGoPosition;
+            item.GOToAnimatePosition.transform.position = transform.position + newGoPosition;
 
             //the scale is != null => this means that this item will also move and duplicate
             if (item.WillMoveAndDuplicate) {
@@ -187,13 +182,12 @@ public class GameManager : MonoBehaviour
                 }
 
                 //create the duplicated item
-                var newGO = Instantiate(GetGOBasedOnValue(duplicatedItem.Value), newGoPosition, Quaternion.identity) as GameObject;
-
-                //make it small in order to animate it
-                newGO.transform.position = newGoPosition;
+                var newGO = Instantiate(GetGOBasedOnValue(duplicatedItem.Value), transform.position + newGoPosition, Quaternion.identity);
 
                 //assign it to the proper position in the array
                 matrix[item.NewRow, item.NewColumn].GO = newGO;
+                objectsToDestroy.Add(item.GOToAnimatePosition);
+                objectsToDestroy.Add(item.ToRemove);
 
                 ///TODO:
                 //we need two animations to happen in chain
@@ -218,22 +212,20 @@ public class GameManager : MonoBehaviour
 
     private GameObject GetGOBasedOnValue(int value)
     {
-        GameObject newGo = null;
-        switch (value)
+        GameObject newGo = value switch
         {
-            case 2: newGo = GO2; break;
-            case 4: newGo = GO4; break;
-            case 8: newGo = GO8; break;
-            case 16: newGo = GO16; break;
-            case 32: newGo = GO32; break;
-            case 64: newGo = GO64; break;
-            case 128: newGo = GO128; break;
-            case 256: newGo = GO256; break;
-            case 512: newGo = GO512; break;
-            case 1024: newGo = GO1024; break;
-            default:
-                throw new System.Exception("Uknown value:" + value);
-        }
+            2 => GO2,
+            4 => GO4,
+            8 => GO8,
+            16 => GO16,
+            32 => GO32,
+            64 => GO64,
+            128 => GO128,
+            256 => GO256,
+            512 => GO512,
+            1024 => GO1024,
+            _ => throw new System.Exception("Uknown value:" + value),
+        };
         return newGo;
     }
 }
