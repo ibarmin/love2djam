@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Playing;
     }
 
+    public void Complete()
+    {
+        gameState = GameState.Won;
+    }
+
     void DebugDisplay(string content)
     {
         DebugText.text = content;
@@ -177,7 +182,7 @@ public class GameManager : MonoBehaviour
                 //check if the item is 2048 => game has ended
                 if (duplicatedItem.Value == 2048)
                 {
-                    gameState = GameState.Won;
+                    Complete();
                     yield return new WaitForEndOfFrame();
                 }
 
