@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SocobanLevelManager : MonoBehaviour
 {
-    public string fileName;
-    public List<SocobanLevel> levels;
+    public string easyFileName;
+    public string hardFileName;
+    public List<SocobanLevel> easyLevels;
+    public List<SocobanLevel> hardLevels;
     
     public void Awake() {
-        TextAsset text = (TextAsset)Resources.Load(fileName);
+        TextAsset text = (TextAsset)Resources.Load(easyFileName);
         if (!text) {
-            Debug.Log("Levels file:" + fileName + ".txt does not exist!");
+            Debug.Log("Levels file:" + easyFileName + ".txt does not exist!");
             return;
         } else {
             Debug.Log("Levels imported!");
@@ -20,17 +22,44 @@ public class SocobanLevelManager : MonoBehaviour
         string[] lines;
 
         lines = levelsText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
-        levels.Add(new SocobanLevel());
+        easyLevels.Add(new SocobanLevel());
 
         for (long i = 0; i < lines.LongLength; i++) {
             string line = lines[i];
             if (line.StartsWith(";")) {
                 Debug.Log("New level added");
-                levels.Add(new SocobanLevel());
+                easyLevels.Add(new SocobanLevel());
                 continue;
             }
-            levels[levels.Count - 1]._rows.Add(line);
-            Debug.Log("Added Line: " + levels[levels.Count - 1]._rows.ToString());
+            easyLevels[easyLevels.Count - 1]._rows.Add(line);
+            Debug.Log("Added Line: " + easyLevels[easyLevels.Count - 1]._rows.ToString());
+        }
+
+
+
+
+
+        text = (TextAsset)Resources.Load(hardFileName);
+        if (!text) {
+            Debug.Log("Levels file:" + hardFileName + ".txt does not exist!");
+            return;
+        } else {
+            Debug.Log("Levels imported!");
+        }
+
+        levelsText = text.text;
+        lines = levelsText.Split(new string[] { "\n" }, System.StringSplitOptions.None);
+        hardLevels.Add(new SocobanLevel());
+
+        for (long i = 0; i < lines.LongLength; i++) {
+            string line = lines[i];
+            if (line.StartsWith(";")) {
+                Debug.Log("New level added");
+                hardLevels.Add(new SocobanLevel());
+                continue;
+            }
+            hardLevels[hardLevels.Count - 1]._rows.Add(line);
+            Debug.Log("Added Line: " + hardLevels[hardLevels.Count - 1]._rows.ToString());
         }
     }
 }
