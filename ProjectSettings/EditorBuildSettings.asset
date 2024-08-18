@@ -26,4 +26,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/HullScene.unity
     guid: ca760f2889eac40e99e379b763125da2
+  - enabled: 1
+    path: Assets/Scenes/SuccessLaunchScene.unity
+    guid: dfbe5877d75574f4cbe13af332f7828a
+  - enabled: 1
+    path: Assets/Scenes/FailLaunchScene.unity
+    guid: 66194163bf05a40bd9cc8bbdf648066c
   m_configObjects: {}

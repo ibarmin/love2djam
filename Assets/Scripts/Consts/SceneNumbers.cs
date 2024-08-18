@@ -11,4 +11,6 @@ public class SceneNumbers
     public static int FUEL_SOCOBAN_SCENE_ID = 4;
     public static int SCENE_2048_ID = 5;
     public static int HULL_SCENE_ID = 6;
+    public static int SUCCESS_SCENE_ID = 7;
+    public static int FAIL_SCENE_ID = 8;
 }

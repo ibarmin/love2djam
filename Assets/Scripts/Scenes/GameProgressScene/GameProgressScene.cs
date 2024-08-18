@@ -13,6 +13,7 @@ public class GameProgressScene : MonoBehaviour, CoroutineScope
     public Button shipBodyButton;
     public Button foodButton;
     public Button fuelButton;
+    public Button launchButton;
 
     public SpaceShipProgressObject spaceShipProgressObject;
 
@@ -79,6 +80,8 @@ public class GameProgressScene : MonoBehaviour, CoroutineScope
         fuelButton.interactable = armorReady && foodReady;
         shipBodyButton.interactable = !armorReady;
         foodButton.interactable = !foodReady;
+        
+        launchButton.gameObject.SetActive(armorReady && foodReady);
     }
 
     public void startCollectingArmor() {
@@ -91,6 +94,18 @@ public class GameProgressScene : MonoBehaviour, CoroutineScope
 
     public void startCollectingFuel() {
         sceneLoader.loadScene(SceneNumbers.FUEL_SCENE_ID);
+    }
+
+    public void tryToLaunch() {        
+        int currentArmorWeight = spaceShipProgress.getArmorWeight();
+        int currentFoodWeight = spaceShipProgress.getFoodWeight();
+        int fuelCollected = spaceShipProgress.getFuelCollected();
+
+        if (fuelCollected >= currentArmorWeight) {
+            sceneLoader.loadScene(SceneNumbers.SUCCESS_SCENE_ID);
+        } else {
+            sceneLoader.loadScene(SceneNumbers.FAIL_SCENE_ID);
+        }
     }
 
     public void quitGame() {
