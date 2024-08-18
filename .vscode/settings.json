@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Love2d.sln"
+    "dotnet.defaultSolution": "Love2dJam.sln"
 }
