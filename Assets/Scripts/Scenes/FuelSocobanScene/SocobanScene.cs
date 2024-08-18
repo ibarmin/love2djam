@@ -17,7 +17,7 @@ public class SocobanScene : MonoBehaviour
 
         SceneManager.SetActiveScene(SceneManager.GetSceneByBuildIndex(SceneNumbers.FUEL_SOCOBAN_SCENE_ID));
         
-        levelBuilder.buildLevel();
+        levelBuilder.buildLevel(fuelScene.lastOpenedDoorType);
         player = FindObjectOfType<SocobanPlayer>();
 
         SocobanBox[] boxes = FindObjectsOfType<SocobanBox>();

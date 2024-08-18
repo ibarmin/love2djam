@@ -98,4 +98,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrived: 0
-  fuelValue: 20
+  fuelValue: 10

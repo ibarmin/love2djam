@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene2048.unity
     guid: 98be90fcfc343a441b8a244a24310bde
+  - enabled: 1
+    path: Assets/Scenes/HullScene.unity
+    guid: ca760f2889eac40e99e379b763125da2
   m_configObjects: {}

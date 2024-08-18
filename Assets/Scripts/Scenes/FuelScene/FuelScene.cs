@@ -20,6 +20,7 @@ public class FuelScene : MonoBehaviour, CoroutineScope
     private int totalFuel = 0;
     private FuelStoreDoor lastOpenedDoor;
     private SceneLoader sceneLoader = new SceneLoader();
+    private SpaceShipProgress spaceShipProgress = new SpaceShipProgress();
 
     public void Start()
     {
@@ -62,6 +63,8 @@ public class FuelScene : MonoBehaviour, CoroutineScope
     }
 
     private void onFinalSocobanUnload() {
+        int collected = spaceShipProgress.getFuelCollected();
+        spaceShipProgress.setFuelCollected(collected + totalFuel);
         sceneLoader.loadScene(SceneNumbers.GAME_PROGRESS_SCENE_ID);
     }
 

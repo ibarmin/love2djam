@@ -7,6 +7,7 @@ public class SocobanLevelBuilder : MonoBehaviour
     public int currentLevel;
     public List<SocobanLevelElement> lvlElements;
     private SocobanLevel level;
+    private System.Random random = new System.Random();
 
     GameObject getPrefab(char c)
     {
@@ -18,9 +19,22 @@ public class SocobanLevelBuilder : MonoBehaviour
         }
     }
 
-    public void buildLevel()
+    public void buildLevel(FuelStoreDoorType doorType)
     {
-        level = FindFirstObjectByType<SocobanLevelManager>().levels[currentLevel];
+        switch (doorType) {
+            case FuelStoreDoorType.normal: {
+                List<SocobanLevel> arr = FindFirstObjectByType<SocobanLevelManager>().easyLevels;
+                int rnd = random.Next(0, arr.Count);
+                level = arr[rnd];
+                break;
+            }
+            case FuelStoreDoorType.hard: {
+                List<SocobanLevel> arr = FindFirstObjectByType<SocobanLevelManager>().hardLevels;
+                int rnd = random.Next(0, arr.Count);
+                level = arr[rnd];                
+                break;
+            }
+        }
 
         Debug.Log("Tryig to build...");
         int startX = -level.Width / 2;

@@ -8,40 +8,74 @@ public class SpaceShipProgress
     private static string armorCollectedKeyName = "armor_collected";
     private static string armorWeightKeyName = "armor_weight";
 
-    private static string foodNeededKeyName = "armor_needed";
-    private static string foodWeightKeyName = "armor_weight";
+    private static string foodNeededKeyName = "food_needed";
+    private static string foodCollectedKeyName = "food_collected";
+    private static string foodWeightKeyName = "food_weight";
+
+    private static string fuelKeyName = "fuel_collected";
 
     public void initGameValues(int neededArmor, int neededFood) {
         setArmourNeeded(neededArmor);
         setFoodNeeded(neededFood);
-
-        setFoodWeight(0);
+        
+        setFoodWeight(200);
         setArmourCollected(0);
         setArmourWeight(0);
+        setFuelCollected(0);
+        setFoodCollected(neededFood);
+
+        PlayerPrefs.Save();
     }
     
     public void setArmourNeeded(int armorValue) {
         PlayerPrefs.SetInt(armorNeededKeyName, armorValue);
+        PlayerPrefs.Save();
     }
 
     public void setFoodNeeded(int foodValue) {
         PlayerPrefs.SetInt(foodNeededKeyName, foodValue);
+        PlayerPrefs.Save();
+    }
+
+    public void setFoodCollected(int foodValue) {
+        PlayerPrefs.SetInt(foodCollectedKeyName, foodValue);
+        PlayerPrefs.Save();
+    }
+
+    public void setFuelCollected(int fuelValue) {
+        PlayerPrefs.SetInt(fuelKeyName, fuelValue);
+        PlayerPrefs.Save();
     }
 
     public void setArmourCollected(int armorValue) {
         PlayerPrefs.SetInt(armorCollectedKeyName, armorValue);
+        PlayerPrefs.Save();
     }
 
     public void setArmourWeight(int armorWeight) {
         PlayerPrefs.SetInt(armorWeightKeyName, armorWeight);
+        PlayerPrefs.Save();
     }
 
     public void setFoodWeight(int foodWeight) {
         PlayerPrefs.SetInt(foodWeightKeyName, foodWeight);
+        PlayerPrefs.Save();
     }
 
     public int getFoodWeight() {
         return PlayerPrefs.GetInt(foodWeightKeyName);
+    }
+
+    public int getFoodNeeded() {
+        return PlayerPrefs.GetInt(foodNeededKeyName);
+    }
+
+    public int getFoodCollected() {
+        return PlayerPrefs.GetInt(foodCollectedKeyName);
+    }
+
+    public int getFuelCollected() {
+        return PlayerPrefs.GetInt(fuelKeyName);
     }
 
     public int getArmorNeeded() {
