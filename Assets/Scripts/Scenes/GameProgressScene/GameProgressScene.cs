@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -44,7 +45,7 @@ public class GameProgressScene : MonoBehaviour, CoroutineScope
         fuelTextField.text = "Топливо: " + fuelCollected;
 
         bool armorReady = currentArmor >= neededArmor;
-        bool foodReady = currentFood >= currentFoodWeight;
+        bool foodReady = currentFood >= neededFood;
 
         if (armorReady) {
             neededArmorTextField.color = Color.green;
@@ -70,13 +71,10 @@ public class GameProgressScene : MonoBehaviour, CoroutineScope
             spaceShipProgressObject.fuelObject.SetActive(true);
         }
 
-        int totalWeightCoff = (currentArmorWeight + currentFoodWeight) / 50;
+        int totalWeightCoff = (currentArmorWeight + currentFoodWeight) / 10;
+        totalWeightCoff = Math.Clamp(totalWeightCoff, 2, 8);
 
-        spaceShipProgressObject.transform.localScale = new Vector3(
-            2 + totalWeightCoff,
-            2 + totalWeightCoff,
-            1
-        );
+        spaceShipProgressObject.transform.localScale = new Vector3(totalWeightCoff, totalWeightCoff, 1);
 
         fuelButton.interactable = armorReady && foodReady;
         shipBodyButton.interactable = !armorReady;

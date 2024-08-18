@@ -4,6 +4,7 @@ using Assets.Scripts;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UI;
+using System;
 
 public enum GameState
 {
@@ -14,6 +15,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     private GameState gameState = GameState.Playing;
+    private SpaceShipProgress spaceShipProgress = new SpaceShipProgress();
+    private SceneLoader sceneLoader = new SceneLoader();
     ItemArray matrix;
     public GameObject GO2, GO4, GO8, GO16, GO32, GO64, GO128, GO256, GO512, GO1024, blankGO;
     public Text ScoreText, DebugText;
@@ -21,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     public IInputDetector inputDetector;
 
-    private int ZIndex = 0, score = 0;
+    private int ZIndex = 0, score = 0, turnsCount = 0;
 
     //will read a file from Resources folder
     //and create the matrix with the preloaded data
@@ -78,7 +81,12 @@ public class GameManager : MonoBehaviour
 
     public void Complete()
     {
+        int foodNeeded = spaceShipProgress.getFoodNeeded();
+        spaceShipProgress.setFoodCollected(foodNeeded);
+        spaceShipProgress.setFoodWeight(Math.Clamp(turnsCount / Globals.TurnsCoff, Globals.MinFoodWeight, Globals.MaxFoodWeight));
+
         gameState = GameState.Won;
+        sceneLoader.loadScene(SceneNumbers.GAME_PROGRESS_SCENE_ID);
     }
 
     void DebugDisplay(string content)
@@ -140,6 +148,8 @@ public class GameManager : MonoBehaviour
 
             if (value.HasValue)
             {
+                turnsCount += 1;
+
                 List<ItemMovementDetails> movementDetails = new();
                 //Debug.Log(value);
                 if (value == InputDirection.Left)

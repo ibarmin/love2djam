@@ -18,11 +18,11 @@ public class SpaceShipProgress
         setArmourNeeded(neededArmor);
         setFoodNeeded(neededFood);
         
-        setFoodWeight(200);
+        setFoodWeight(0);
         setArmourCollected(0);
         setArmourWeight(0);
         setFuelCollected(0);
-        setFoodCollected(neededFood);
+        setFoodCollected(0);
 
         PlayerPrefs.Save();
     }
